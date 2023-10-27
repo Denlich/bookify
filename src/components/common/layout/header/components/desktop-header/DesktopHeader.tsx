@@ -2,7 +2,7 @@ import { Session } from "next-auth";
 import { FC } from "react";
 import { Container, Flex } from "@radix-ui/themes";
 import HomeLink from "../HomeLink";
-import Link from "next/link";
+import { NavLink } from "@/components/common/ui";
 
 interface DesktopHeaderProps {
   session: Session | null;
@@ -27,15 +27,15 @@ const AuthStatus = ({
 }) => {
   if (status === "unauthenticated")
     return (
-      <Link href="/api/auth/signin" className="nav-link">
+      <NavLink href="/api/auth/signin" className="nav-link">
         Login
-      </Link>
+      </NavLink>
     );
 
   return (
-    <Link href="/api/auth/signout" className="nav-link">
+    <NavLink href="/api/auth/signout" className="nav-link">
       Log out
-    </Link>
+    </NavLink>
   );
 };
 

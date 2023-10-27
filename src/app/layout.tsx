@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Theme } from "@radix-ui/themes";
+import { Container, Grid, Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import "./globals.css";
-import Header from "@/components/common/layout";
+import { Header, Sidebar } from "@/components/common/layout";
 import Provider from "@/auth/Provider";
 
 export const metadata: Metadata = {
@@ -21,7 +21,12 @@ export default function RootLayout({
         <Theme>
           <Provider>
             <Header />
-            {children}
+            <Container>
+              <Grid columns={{ initial: "1", sm: "5" }} gap="5">
+                <Sidebar />
+                <main className="md:col-span-4">{children}</main>
+              </Grid>
+            </Container>
           </Provider>
         </Theme>
       </body>
