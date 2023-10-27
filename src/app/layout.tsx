@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Theme } from "@radix-ui/themes";
 import "@radix-ui/themes/styles.css";
 import "./globals.css";
+import Header from "./Header";
 
 export const metadata: Metadata = {
   title: "BOOKIFY",
@@ -16,7 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Theme>{children}</Theme>
+        <Theme>
+          <Header />
+          {children}
+        </Theme>
       </body>
     </html>
   );
