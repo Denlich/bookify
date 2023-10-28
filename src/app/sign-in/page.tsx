@@ -4,6 +4,7 @@ import { ErrorMessage } from "@/components/common/ui";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as Form from "@radix-ui/react-form";
 import { Button, TextField } from "@radix-ui/themes";
+import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -23,7 +24,13 @@ const SignInPage = () => {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const onSubmit = handleSubmit(async (data) => {
+    const signInData = await signIn("credentials", {
+      email: data.email,
+      password: data.password,
+    });
+    console.log(signInData);
+  });
 
   return (
     <Form.Root
