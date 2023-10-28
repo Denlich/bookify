@@ -5,6 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as Form from "@radix-ui/react-form";
 import { Button, Flex, Text, TextField } from "@radix-ui/themes";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -16,6 +18,7 @@ const schema = z.object({
 type SignInFormData = z.infer<typeof schema>;
 
 const SignInPage = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -24,18 +27,26 @@ const SignInPage = () => {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = handleSubmit(async (data) => {
+  const [error, setError] = useState("");
+
+  const onSubmit = async (data: SignInFormData) => {
     const signInData = await signIn("credentials", {
       email: data.email,
       password: data.password,
+      redirect: false,
     });
-    console.log(signInData);
-  });
+
+    if (signInData?.error) {
+      setError("Email or password is incorrect");
+    } else {
+      router.push("/");
+    }
+  };
 
   return (
     <Form.Root
       className="space-y-5 bg-white px-3 py-5 rounded-lg"
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <Form.Field name="email" className="space-y-1">
         <Form.Label>Email</Form.Label>
@@ -63,6 +74,9 @@ const SignInPage = () => {
           <Text>Don&apos;t have an account?</Text>
           <Link href="/sign-up">Sign Up</Link>
         </Flex>
+      </Form.Field>
+      <Form.Field name="error">
+        <ErrorMessage>{error}</ErrorMessage>
       </Form.Field>
     </Form.Root>
   );
