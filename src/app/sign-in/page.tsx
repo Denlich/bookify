@@ -39,6 +39,7 @@ const SignInPage = () => {
     if (signInData?.error) {
       setError("Email or password is incorrect");
     } else {
+      router.refresh();
       router.push("/");
     }
   };

@@ -1,3 +1,5 @@
+"use client";
+
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { TextField } from "@radix-ui/themes";
 import React from "react";

@@ -1,18 +1,17 @@
-import { Session } from "next-auth";
-import { FC } from "react";
-import { Flex } from "@radix-ui/themes";
-import HomeLink from "../HomeLink";
+import authOptions from "@/auth/authOptions";
 import { NavLink } from "@/components/common/ui";
 import { EnterIcon } from "@radix-ui/react-icons";
+import { Flex } from "@radix-ui/themes";
+import { getServerSession } from "next-auth";
+import { FC } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import HomeLink from "../HomeLink";
 import SearchBox from "../SearchBox";
+import UserAccountNav from "./UserAccountNav";
 
-interface DesktopHeaderProps {
-  session: Session | null;
-  status: "authenticated" | "loading" | "unauthenticated";
-}
+const DesktopHeader: FC = async () => {
+  const session = await getServerSession(authOptions);
 
-const DesktopHeader: FC<DesktopHeaderProps> = ({ status }) => {
   return (
     <Flex justify="between" align="center">
       <HomeLink />
@@ -22,29 +21,17 @@ const DesktopHeader: FC<DesktopHeaderProps> = ({ status }) => {
           <AiOutlineShoppingCart />
           Cart
         </NavLink>
-        <AuthStatus status={status} />
+
+        {session?.user ? (
+          <UserAccountNav />
+        ) : (
+          <NavLink href="/sign-in">
+            <EnterIcon />
+            Login
+          </NavLink>
+        )}
       </Flex>
     </Flex>
-  );
-};
-
-const AuthStatus = ({
-  status,
-}: {
-  status: "authenticated" | "loading" | "unauthenticated";
-}) => {
-  if (status === "unauthenticated")
-    return (
-      <NavLink href="/api/auth/signin" className="nav-link">
-        <EnterIcon />
-        Login
-      </NavLink>
-    );
-
-  return (
-    <NavLink href="/api/auth/signout" className="nav-link">
-      Log out
-    </NavLink>
   );
 };
 
