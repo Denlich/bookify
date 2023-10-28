@@ -1,9 +1,9 @@
 "use client";
 
-import { ErrorMessage } from "@/components/common/ui";
+import { ErrorMessage, Link } from "@/components/common/ui";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as Form from "@radix-ui/react-form";
-import { Button, TextField } from "@radix-ui/themes";
+import { Button, Flex, Text, TextField } from "@radix-ui/themes";
 import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -51,12 +51,18 @@ const SignInPage = () => {
         </Form.Control>
         <ErrorMessage>{errors.password?.message}</ErrorMessage>
       </Form.Field>
-      <Form.Field name="error">
+      <Form.Field name="button">
         <Form.Submit asChild>
           <Button className="w-full hover:cursor-pointer bg-cyan-500 hover:bg-cyan-600 transition">
             Login
           </Button>
         </Form.Submit>
+      </Form.Field>
+      <Form.Field name="link">
+        <Flex align="center">
+          <Text>Don&apos;t have an account?</Text>
+          <Link href="/sign-up">Sign Up</Link>
+        </Flex>
       </Form.Field>
     </Form.Root>
   );
