@@ -24,7 +24,7 @@ const NavLink: React.FC<LinkProps & HTMLProps<HTMLAnchorElement>> = ({
     >
       <a
         className={cn(
-          "text-cyan-950 hover:text-cyan-800 transition",
+          "flex items-center gap-2 text-cyan-700 hover:text-cyan-950 transition",
           className
         )}
         {...rest}

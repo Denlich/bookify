@@ -3,10 +3,15 @@
 import React, { FC } from "react";
 import { useSession } from "next-auth/react";
 import DesktopHeader from "./components/desktop-header";
+import { Container } from "@radix-ui/themes";
 
 const Header: FC = () => {
   const { status, data: session } = useSession();
-  return <DesktopHeader session={session} status={status} />;
+  return (
+    <Container className="py-4 bg-white">
+      <DesktopHeader session={session} status={status} />
+    </Container>
+  );
 };
 
 export default Header;

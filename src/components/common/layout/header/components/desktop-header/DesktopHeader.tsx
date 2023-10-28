@@ -1,8 +1,10 @@
 import { Session } from "next-auth";
 import { FC } from "react";
-import { Container, Flex } from "@radix-ui/themes";
+import { Flex } from "@radix-ui/themes";
 import HomeLink from "../HomeLink";
 import { NavLink } from "@/components/common/ui";
+import { EnterIcon } from "@radix-ui/react-icons";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 interface DesktopHeaderProps {
   session: Session | null;
@@ -11,12 +13,16 @@ interface DesktopHeaderProps {
 
 const DesktopHeader: FC<DesktopHeaderProps> = ({ status }) => {
   return (
-    <Container>
-      <Flex justify="between" align="center">
-        <HomeLink />
+    <Flex justify="between" align="center">
+      <HomeLink />
+      <Flex gap="4">
+        <NavLink href="/cart" className="nav-link">
+          <AiOutlineShoppingCart />
+          Cart
+        </NavLink>
         <AuthStatus status={status} />
       </Flex>
-    </Container>
+    </Flex>
   );
 };
 
@@ -28,6 +34,7 @@ const AuthStatus = ({
   if (status === "unauthenticated")
     return (
       <NavLink href="/api/auth/signin" className="nav-link">
+        <EnterIcon />
         Login
       </NavLink>
     );
