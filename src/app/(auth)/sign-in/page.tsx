@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import SocialButton from "../components/SocialButton";
 
 const schema = z.object({
   email: z.string().email().min(1, "Email is required").max(150),
@@ -44,6 +45,9 @@ const SignInPage = () => {
     }
   };
 
+  const loginWithGoogle = () =>
+    signIn("google", { callbackUrl: "http://localhost:3000" });
+
   return (
     <Form.Root
       className="space-y-5 bg-white px-3 py-5 rounded-lg"
@@ -69,6 +73,9 @@ const SignInPage = () => {
             Login
           </Button>
         </Form.Submit>
+      </Form.Field>
+      <Form.Field name="social">
+        <SocialButton type="button" onClick={loginWithGoogle} />
       </Form.Field>
       <Form.Field name="link">
         <Flex align="center">

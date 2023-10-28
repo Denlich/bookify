@@ -39,7 +39,7 @@ const authOptions: NextAuthOptions = {
           surname: existingUser.surname,
           username: existingUser.username,
           email: existingUser.email,
-        } as any;
+        };
       },
     }),
     GoogleProvider({
