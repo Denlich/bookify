@@ -8,7 +8,7 @@ import { Container } from "@radix-ui/themes";
 const Header: FC = () => {
   const { status, data: session } = useSession();
   return (
-    <Container className="py-4 bg-white">
+    <Container className="py-4">
       <DesktopHeader session={session} status={status} />
     </Container>
   );

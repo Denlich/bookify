@@ -5,6 +5,7 @@ import HomeLink from "../HomeLink";
 import { NavLink } from "@/components/common/ui";
 import { EnterIcon } from "@radix-ui/react-icons";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import SearchBox from "../SearchBox";
 
 interface DesktopHeaderProps {
   session: Session | null;
@@ -15,6 +16,7 @@ const DesktopHeader: FC<DesktopHeaderProps> = ({ status }) => {
   return (
     <Flex justify="between" align="center">
       <HomeLink />
+      <SearchBox />
       <Flex gap="4">
         <NavLink href="/cart" className="nav-link">
           <AiOutlineShoppingCart />
