@@ -54,3 +54,26 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+model Author {
+  id        String       @id @default(cuid())
+  name      String
+  surname   String
+  image     String?
+  biography String?
+  books     BookAuthor[]
+}
+
+model Book {
+  id      String       @id @default(cuid())
+  title   String
+  authors BookAuthor[]
+}
+
+model BookAuthor {
+  id       String @id @default(cuid())
+  author   Author @relation(fields: [authorId], references: [id])
+  authorId String
+  book     Book   @relation(fields: [bookId], references: [id])
+  bookId   String
+}
