@@ -10,23 +10,26 @@ interface FormInputProps {
     | "image"
     | "biography"
     | "books"
-    | `books.${number}`;
-  register: UseFormRegister<{
-    name: string;
-    surname: string;
-    image?: string | undefined;
-    biography?: string | undefined;
-    books?: string[] | undefined;
-  }>;
+    | `books.${number}`
+    | "email"
+    | "password"
+    | "username";
+  register: UseFormRegister<any>;
   error?: FieldError;
+  type?: "text" | "email" | "password";
 }
 
-const FormInput: React.FC<FormInputProps> = ({ name, register, error }) => {
+const FormInput: React.FC<FormInputProps> = ({
+  name,
+  register,
+  error,
+  type = "text",
+}) => {
   return (
     <Form.Field name={name} className="space-y-1">
       <Form.Label>{name}</Form.Label>
       <Form.Control asChild>
-        <TextField.Input {...register(name)} />
+        <TextField.Input {...register(name)} type={type} />
       </Form.Control>
       <ErrorMessage>{error?.message}</ErrorMessage>
     </Form.Field>
