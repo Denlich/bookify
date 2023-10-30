@@ -1,13 +1,13 @@
+"use client";
+
 import { Box, Flex, Text } from "@radix-ui/themes";
-import React, { Dispatch, SetStateAction, useMemo } from "react";
+import React, { useContext, useMemo } from "react";
 import cn from "classnames";
+import { AuthorContext } from "../providers/AuthorProvider";
 
-interface AlphabetProps {
-  isActive: string;
-  setIsActive: Dispatch<SetStateAction<string>>;
-}
+const Alphabet: React.FC = () => {
+  const { isActive, setIsActive } = useContext(AuthorContext);
 
-const Alphabet: React.FC<AlphabetProps> = ({ isActive, setIsActive }) => {
   const alphabet = useMemo(() => {
     const letters = [];
     for (let i = 97; i <= 122; i++) {

@@ -1,16 +1,16 @@
-"use client";
-
 import { Flex, Text } from "@radix-ui/themes";
-import { useMemo, useState } from "react";
 import Alphabet from "./components/Alphabet";
+import Authors from "./components/Authors";
+import AuthorProvider from "./providers/AuthorProvider";
 
 const AllAuthorsPage = () => {
-  const [isActive, setIsActive] = useState("A");
-
   return (
     <Flex direction="column" gap="5">
       <Text>All Authors</Text>
-      <Alphabet isActive={isActive} setIsActive={setIsActive} />
+      <AuthorProvider>
+        <Alphabet />
+        <Authors />
+      </AuthorProvider>
     </Flex>
   );
 };
