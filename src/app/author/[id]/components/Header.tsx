@@ -17,6 +17,9 @@ const Header = ({ author }: { author: Author }) => {
             src={author.image}
             alt={`${author.name} ${author.surname}`}
             className="w-full h-full object-cover rounded-lg"
+            width={516}
+            height={680}
+            priority
           />
         )}
       </Box>
