@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "../../../../prisma/client";
-import { authorSchema } from "./authorSchema";
+import { authorSchema } from "@/validators/authorSchema";
 
 export async function POST(req: NextRequest) {
   const body = await req.json();

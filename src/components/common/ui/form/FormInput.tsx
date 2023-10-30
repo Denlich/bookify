@@ -17,6 +17,7 @@ interface FormInputProps {
   register: UseFormRegister<any>;
   error?: FieldError;
   type?: "text" | "email" | "password";
+  defaultValue?: string | number | readonly string[];
 }
 
 const FormInput: React.FC<FormInputProps> = ({
@@ -24,12 +25,17 @@ const FormInput: React.FC<FormInputProps> = ({
   register,
   error,
   type = "text",
+  defaultValue,
 }) => {
   return (
     <Form.Field name={name} className="space-y-1">
       <Form.Label>{name}</Form.Label>
       <Form.Control asChild>
-        <TextField.Input {...register(name)} type={type} />
+        <TextField.Input
+          {...register(name)}
+          type={type}
+          defaultValue={defaultValue}
+        />
       </Form.Control>
       <ErrorMessage>{error?.message}</ErrorMessage>
     </Form.Field>
