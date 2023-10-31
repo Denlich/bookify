@@ -1,5 +1,5 @@
 import { Table } from "@radix-ui/themes";
-import TableFilter from "./TableFilter";
+import Filter from "../Filter";
 import { authorGetter, publisherGetter } from "../utils";
 import { PublisherWithBooks } from "@/types/PublisherWithBooks";
 import { AuthorWithBooks } from "@/types/AuthorWithBooks";
@@ -20,7 +20,7 @@ const AllAdminTable = async ({ type }: { type: "author" | "publisher" }) => {
         </Table.Row>
       </Table.Header>
       <Table.Body>
-        <TableFilter withBooks={list} />
+        <Filter withBooks={list} isAdmin={true} />
       </Table.Body>
     </Table.Root>
   );

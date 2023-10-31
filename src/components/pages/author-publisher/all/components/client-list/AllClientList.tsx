@@ -2,7 +2,7 @@ import { Grid } from "@radix-ui/themes";
 import { authorGetter, publisherGetter } from "../utils";
 import { AuthorWithBooks } from "@/types/AuthorWithBooks";
 import { PublisherWithBooks } from "@/types/PublisherWithBooks";
-import ListFilter from "./ListFilter";
+import Filter from "../Filter";
 
 const AllClientList = async ({ type }: { type: "author" | "publisher" }) => {
   const getter = type === "author" ? authorGetter : publisherGetter;
@@ -14,7 +14,7 @@ const AllClientList = async ({ type }: { type: "author" | "publisher" }) => {
       gap="3"
       className="bg-white rounded-xl p-3"
     >
-      <ListFilter withBooks={list} />
+      <Filter withBooks={list} />
     </Grid>
   );
 };
