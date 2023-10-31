@@ -4,7 +4,8 @@ import { bookSchema } from "@/validators/bookSchema";
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const { title, publisherId, authors } = bookSchema.parse(body);
+  const { title, description, cost, type, image, publisherId, authors } =
+    bookSchema.parse(body);
   const validation = bookSchema.safeParse(body);
 
   if (!validation.success)
@@ -13,6 +14,10 @@ export async function POST(req: NextRequest) {
   const newAuthor = await prisma.book.create({
     data: {
       title,
+      description,
+      image,
+      type,
+      cost,
       publisherId,
       authors: {
         connect: authors?.map((authorId) => ({ id: authorId })),
