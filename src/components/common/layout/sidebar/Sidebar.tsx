@@ -26,7 +26,7 @@ const Sidebar = () => {
           Audio books
         </NavLink>
         <NavLink href="/">Publishing houses</NavLink>
-        <NavLink href="/">Authors</NavLink>
+        <NavLink href="/author/all">Authors</NavLink>
       </Flex>
     </aside>
   );

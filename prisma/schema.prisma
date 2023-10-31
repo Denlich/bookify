@@ -54,3 +54,18 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+model Author {
+  id        String  @id @default(cuid())
+  name      String
+  surname   String
+  image     String?
+  biography String? @db.VarChar(1000)
+  books     Book[]
+}
+
+model Book {
+  id      String   @id @default(cuid())
+  title   String
+  authors Author[]
+}
