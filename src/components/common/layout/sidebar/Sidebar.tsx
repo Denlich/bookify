@@ -16,11 +16,11 @@ const Sidebar = () => {
           <HiOutlineBookOpen />
           Printed books
         </NavLink>
-        <NavLink href="/">
+        <NavLink href="/book/e-book">
           <BsCloudArrowDown />
           E-books
         </NavLink>
-        <NavLink href="/">
+        <NavLink href="/book/audio">
           <BsHeadphones />
           Audio books
         </NavLink>
