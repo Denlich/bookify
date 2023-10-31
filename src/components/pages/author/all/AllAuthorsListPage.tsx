@@ -4,8 +4,12 @@ import React from "react";
 import Alphabet from "./components/Alphabet";
 import dynamic from "next/dynamic";
 
-const Authors = dynamic(() => import("./components/Authors"));
-const AuthorsTable = dynamic(() => import("./components/AuthorsTable"));
+const AuthorsList = dynamic(
+  () => import("./components/AuthorsList/AuthorsList")
+);
+const AuthorsTable = dynamic(
+  () => import("./components/AuthorsTable/AuthorsTable")
+);
 
 const AllAuthorsListPage = ({ isAdmin = false }: { isAdmin?: boolean }) => {
   return (
@@ -15,7 +19,7 @@ const AllAuthorsListPage = ({ isAdmin = false }: { isAdmin?: boolean }) => {
       </Text>
       <AuthorProvider>
         <Alphabet />
-        {isAdmin ? <AuthorsTable /> : <Authors />}
+        {isAdmin ? <AuthorsTable /> : <AuthorsList />}
       </AuthorProvider>
     </Flex>
   );

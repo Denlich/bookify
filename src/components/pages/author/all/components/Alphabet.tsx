@@ -6,7 +6,7 @@ import cn from "classnames";
 import { AuthorContext } from "../../../../../app/author/all/providers/AuthorProvider";
 
 const Alphabet: React.FC = () => {
-  const { isActive, setIsActive } = useContext(AuthorContext);
+  const { letter, setLetter } = useContext(AuthorContext);
 
   const alphabet = useMemo(() => {
     const letters = [];
@@ -18,23 +18,23 @@ const Alphabet: React.FC = () => {
 
   return (
     <Flex className="p-3 rounded-xl bg-white" wrap="wrap" gap="3">
-      {alphabet.map((letter) => (
+      {alphabet.map((l) => (
         <Box
           className={cn(
             "w-8 h-8 rounded-full flex items-center justify-center hover:bg-cyan-100 hover:cursor-pointer transition",
             {
-              ["bg-cyan-500 hover:bg-cyan-400"]: letter === isActive,
+              ["bg-cyan-500 hover:bg-cyan-400"]: l === letter,
             }
           )}
-          onClick={() => setIsActive(letter)}
-          key={letter}
+          onClick={() => setLetter(l)}
+          key={l}
         >
           <Text
             className={cn("text-cyan-500 text-xl", {
-              ["text-white"]: letter === isActive,
+              ["text-white"]: l === letter,
             })}
           >
-            {letter}
+            {l}
           </Text>
         </Box>
       ))}

@@ -1,6 +1,6 @@
 "use client";
 
-import { Pencil2Icon, TrashIcon } from "@radix-ui/react-icons";
+import { Pencil2Icon } from "@radix-ui/react-icons";
 import { Flex, IconButton } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
 import DeleteAuthorButton from "./DeleteAuthorButton";

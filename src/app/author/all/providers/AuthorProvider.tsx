@@ -9,8 +9,8 @@ import {
 } from "react";
 
 interface AuthorContextProps {
-  isActive: string;
-  setIsActive: Dispatch<SetStateAction<string>>;
+  letter: string;
+  setLetter: Dispatch<SetStateAction<string>>;
 }
 
 export const AuthorContext = createContext<AuthorContextProps>(
@@ -18,10 +18,10 @@ export const AuthorContext = createContext<AuthorContextProps>(
 );
 
 const AuthorProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  const [isActive, setIsActive] = useState<string>("A");
+  const [letter, setLetter] = useState<string>("A");
 
   return (
-    <AuthorContext.Provider value={{ isActive, setIsActive }}>
+    <AuthorContext.Provider value={{ letter, setLetter }}>
       {children}
     </AuthorContext.Provider>
   );
