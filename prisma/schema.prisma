@@ -65,7 +65,17 @@ model Author {
 }
 
 model Book {
-  id      String   @id @default(cuid())
-  title   String
-  authors Author[]
+  id          String    @id @default(cuid())
+  title       String
+  authors     Author[]
+  publisher   Publisher @relation(fields: [publisherId], references: [id])
+  publisherId String
+}
+
+model Publisher {
+  id        String  @id @default(cuid())
+  name      String
+  image     String?
+  biography String? @db.VarChar(1000)
+  books     Book[]
 }
