@@ -12,7 +12,7 @@ const Sidebar = () => {
         <NavLink href="/">
           <ListBulletIcon /> Categories
         </NavLink>
-        <NavLink href="/">
+        <NavLink href="/book/printed">
           <HiOutlineBookOpen />
           Printed books
         </NavLink>
