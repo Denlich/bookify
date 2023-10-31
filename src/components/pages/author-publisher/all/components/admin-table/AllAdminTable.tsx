@@ -1,6 +1,6 @@
 import { Table } from "@radix-ui/themes";
 import TableFilter from "./TableFilter";
-import { authorGetter, publisherGetter } from "../getters";
+import { authorGetter, publisherGetter } from "../utils";
 import { PublisherWithBooks } from "@/types/PublisherWithBooks";
 import { AuthorWithBooks } from "@/types/AuthorWithBooks";
 
