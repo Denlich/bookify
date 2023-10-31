@@ -1,10 +1,10 @@
-import { Author } from "@prisma/client";
+import { Author, Publisher } from "@prisma/client";
 import { Box, Flex, Grid, Text } from "@radix-ui/themes";
 import dynamic from "next/dynamic";
 
 const Image = dynamic(() => import("next/image"));
 
-const Header = ({ author }: { author?: Author }) => {
+const Header = ({ entity }: { entity: Author | Publisher }) => {
   return (
     <Grid
       gap="5"
@@ -13,10 +13,10 @@ const Header = ({ author }: { author?: Author }) => {
       className="bg-white rounded-xl"
     >
       <Box className="w-full h-72 md:h-52 rounded-lg bg-slate-300">
-        {author?.image && (
+        {entity?.image && (
           <Image
-            src={author.image}
-            alt={`${author.name} ${author.surname}`}
+            src={entity.image}
+            alt={`${entity.name} ${"surname" in entity && entity.surname}`}
             className="w-full h-full object-cover rounded-lg"
             width={516}
             height={680}
@@ -26,9 +26,10 @@ const Header = ({ author }: { author?: Author }) => {
       </Box>
       <Flex className="md:col-span-3" direction="column" gap="5">
         <Text className="text-2xl font-bold">
-          {author?.name} {author?.surname} – Books and biography
+          {entity?.name}{" "}
+          {"surname" in entity && entity.surname + " – Books and biography"}
         </Text>
-        {author?.biography && <Text>{author.biography}</Text>}
+        {entity?.biography && <Text>{entity.biography}</Text>}
       </Flex>
     </Grid>
   );

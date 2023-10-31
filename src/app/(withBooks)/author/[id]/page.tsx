@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
-import prisma from "../../../../prisma/client";
-import Header from "./components/Header";
+import prisma from "../../../../../prisma/client";
+import Header from "../../components/Header";
 
 interface AuthPageProps {
   params: {
@@ -9,7 +9,7 @@ interface AuthPageProps {
   };
 }
 
-const Books = dynamic(() => import("./components/Books"));
+const Books = dynamic(() => import("../../components/Books"));
 
 const AuthorPage = async ({ params }: AuthPageProps) => {
   const author = await prisma.author.findUnique({
@@ -21,7 +21,7 @@ const AuthorPage = async ({ params }: AuthPageProps) => {
 
   return (
     <>
-      <Header author={author} />
+      <Header entity={author} />
       {author.books.length > 0 && <Books books={author.books} />}
     </>
   );
