@@ -15,7 +15,7 @@ const DeleteAuthorButton = ({ authorId }: { authorId: string }) => {
     try {
       setIsDeleting(true);
       await axios.delete(`/api/author/${authorId}`);
-      router.push("/author/all");
+      router.push("/admin/author/all");
       router.refresh();
     } catch (error) {
       setError(true);

@@ -12,7 +12,11 @@ const AuthorsFilter = ({ authors }: { authors: AuthorWithBooks[] }) => {
   return authors
     .filter((authors) => authors.name.charAt(0) === letter)
     .map((author) => (
-      <Link href={`/author/${author.id}`} key={author.id}>
+      <Link
+        href={`/author/${author.id}`}
+        className="hover:cursor-pointer hover:bg-gray-50 transition"
+        key={author.id}
+      >
         <Flex justify="between" align="center">
           <Text className="text-cyan-700 font-semibold">
             {author.name} {author.surname}

@@ -14,15 +14,14 @@ const AuthorsFilter = ({ authors }: { authors: AuthorWithBooks[] }) => {
   return authors
     .filter((authors) => authors.name.charAt(0) === letter)
     .map((author) => (
-      <Table.Row
-        key={author.id}
-        onClick={() => router.push(`/author/${author.id}`)}
-        className="hover:bg-gray-100 cursor-pointer"
-      >
-        <Table.Cell>
+      <Table.Row key={author.id} className="hover:bg-gray-100 cursor-pointer">
+        <Table.Cell onClick={() => router.push(`/author/${author.id}`)}>
           {author.name} {author.surname}
         </Table.Cell>
-        <Table.Cell justify="center">
+        <Table.Cell
+          onClick={() => router.push(`/author/${author.id}`)}
+          justify="center"
+        >
           {author.biography
             ? `${author.biography.slice(0, 30)}...`
             : "No biography"}
