@@ -10,7 +10,7 @@ import ActionButtons from "../ActionButtons";
 const TableRow = ({ item }: { item: AuthorWithBooks | PublisherWithBooks }) => {
   const router = useRouter();
   const route = useMemo(() => {
-    `/${"surname" in item ? "author" : "publisher"}`;
+    return "surname" in item ? "author" : "publisher";
   }, [item]);
 
   return (
@@ -19,13 +19,13 @@ const TableRow = ({ item }: { item: AuthorWithBooks | PublisherWithBooks }) => {
         {item.name} {"surname" in item ? item.surname : null}
       </Table.Cell>
       <Table.Cell
-        onClick={() => router.push(`${route}/${item.id}`)}
+        onClick={() => router.push(`/${route}/${item.id}`)}
         justify="center"
       >
         {item.biography ? `${item.biography.slice(0, 30)}...` : "No biography"}
       </Table.Cell>
       <Table.Cell>
-        <ActionButtons authorId={item.id} />
+        <ActionButtons itemId={item.id} type={route} />
       </Table.Cell>
     </Table.Row>
   );

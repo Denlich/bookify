@@ -15,7 +15,7 @@ const AllListPage = ({ isAdmin = false, type }: AllListPageProps) => {
   return (
     <Flex direction="column" gap="5">
       <Text size="5" className="font-bold text-cyan-700">
-        All Authors
+        All {type.slice(0, 1).toUpperCase() + type.slice(1)}s
       </Text>
       <FilterProvider>
         <Alphabet />

@@ -3,20 +3,27 @@
 import { Pencil2Icon } from "@radix-ui/react-icons";
 import { Flex, IconButton } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
-import DeleteAuthorButton from "./DeleteAuthorButton";
+import DeleteButton from "./DeleteButton";
 
-const ActionButtons = ({ authorId }: { authorId: string }) => {
+const ActionButtons = ({
+  itemId,
+  type,
+}: {
+  itemId: string;
+  type: "author" | "publisher";
+}) => {
   const router = useRouter();
+
   return (
     <Flex gap="3" align="center" justify="end">
       <IconButton
         color="cyan"
-        onClick={() => router.push(`/admin/author/${authorId}`)}
+        onClick={() => router.push(`/admin/${type}/${itemId}`)}
         className="hover:cursor-pointer"
       >
         <Pencil2Icon width="18" height="18" />
       </IconButton>
-      <DeleteAuthorButton authorId={authorId} />
+      <DeleteButton itemId={itemId} type={type} />
     </Flex>
   );
 };

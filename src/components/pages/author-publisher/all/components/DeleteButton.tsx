@@ -6,7 +6,13 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const DeleteAuthorButton = ({ authorId }: { authorId: string }) => {
+const DeleteButton = ({
+  itemId,
+  type,
+}: {
+  itemId: string;
+  type: "author" | "publisher";
+}) => {
   const router = useRouter();
   const [error, setError] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -14,8 +20,8 @@ const DeleteAuthorButton = ({ authorId }: { authorId: string }) => {
   const handleDeleteAuthor = async () => {
     try {
       setIsDeleting(true);
-      await axios.delete(`/api/author/${authorId}`);
-      router.push("/admin/author/all");
+      await axios.delete(`/api/${type}/${itemId}`);
+      router.push(`/admin/${type}/all`);
       router.refresh();
     } catch (error) {
       setError(true);
@@ -32,14 +38,14 @@ const DeleteAuthorButton = ({ authorId }: { authorId: string }) => {
             disabled={isDeleting}
             className="bg-red-500 hover:bg-red-400 hover:cursor-pointer transition"
           >
-            Delete Author
+            Delete {type.slice(0, 1).toUpperCase() + type.slice(1)}
             {isDeleting && <Spinner />}
           </Button>
         </AlertDialog.Trigger>
         <AlertDialog.Content>
           <AlertDialog.Title>Confirm Deletion</AlertDialog.Title>
           <AlertDialog.Description>
-            Are you sure want to delete this author? This action cannot be
+            Are you sure want to delete this {type}? This action cannot be
             undone.
           </AlertDialog.Description>
           <Flex mt="4" gap="3">
@@ -58,7 +64,7 @@ const DeleteAuthorButton = ({ authorId }: { authorId: string }) => {
                 onClick={handleDeleteAuthor}
                 className="bg-red-500 hover:bg-red-400 hover:cursor-pointer transition"
               >
-                Delete Author
+                Delete {type.slice(0, 1).toUpperCase() + type.slice(1)}
               </Button>
             </AlertDialog.Action>
           </Flex>
@@ -68,7 +74,7 @@ const DeleteAuthorButton = ({ authorId }: { authorId: string }) => {
         <AlertDialog.Content>
           <AlertDialog.Title>Error</AlertDialog.Title>
           <AlertDialog.Description>
-            This author could not be deleted
+            This {type} could not be deleted
           </AlertDialog.Description>
           <Button
             color="gray"
@@ -84,4 +90,4 @@ const DeleteAuthorButton = ({ authorId }: { authorId: string }) => {
   );
 };
 
-export default DeleteAuthorButton;
+export default DeleteButton;

@@ -8,12 +8,12 @@ import { useMemo } from "react";
 
 const ListItem = ({ item }: { item: AuthorWithBooks | PublisherWithBooks }) => {
   const route = useMemo(() => {
-    `/${"surname" in item ? "author" : "publisher"}`;
+    return "surname" in item ? "author" : "publisher";
   }, [item]);
 
   return (
     <Link
-      href={`${route}/${item.id}`}
+      href={`/${route}/${item.id}`}
       className="hover:cursor-pointer hover:bg-gray-50 transition"
       key={item.id}
     >
