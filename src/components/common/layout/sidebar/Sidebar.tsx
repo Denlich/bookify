@@ -1,9 +1,8 @@
-import React from "react";
-import { Flex } from "@radix-ui/themes";
 import { NavLink } from "@/components/common/ui";
 import { ListBulletIcon } from "@radix-ui/react-icons";
+import { Flex } from "@radix-ui/themes";
+import { BsCloudArrowDown, BsHeadphones } from "react-icons/bs";
 import { HiOutlineBookOpen } from "react-icons/hi";
-import { BsHeadphones, BsCloudArrowDown } from "react-icons/bs";
 
 const Sidebar = () => {
   return (

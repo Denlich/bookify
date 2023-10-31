@@ -3,11 +3,10 @@
 import { FilterContext } from "@/components/pages/author-publisher/all/providers/FilterProvider";
 import { AuthorWithBooks } from "@/types/AuthorWithBooks";
 import { PublisherWithBooks } from "@/types/PublisherWithBooks";
-import { Table, Text } from "@radix-ui/themes";
-import { useContext, useMemo } from "react";
-import { filterByFirstLetter } from "./utils";
 import dynamic from "next/dynamic";
+import { useContext, useMemo } from "react";
 import EmptyFiler from "./EmptyFiler";
+import { filterByFirstLetter } from "./utils";
 
 const TableRow = dynamic(() => import("./admin-table/TableRow"));
 const ListItem = dynamic(() => import("./client-list/ListItem"));

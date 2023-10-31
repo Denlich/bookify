@@ -6,7 +6,7 @@ import { authorSchema } from "@/validators/authorSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Author } from "@prisma/client";
 import * as Form from "@radix-ui/react-form";
-import { Button, TextArea } from "@radix-ui/themes";
+import { Button } from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

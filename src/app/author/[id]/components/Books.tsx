@@ -1,6 +1,5 @@
 import { Book } from "@prisma/client";
 import { Grid } from "@radix-ui/themes";
-import React from "react";
 
 const Books = ({ books }: { books: Book[] }) => {
   return (

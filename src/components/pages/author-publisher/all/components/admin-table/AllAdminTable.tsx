@@ -1,8 +1,8 @@
+import { AuthorWithBooks } from "@/types/AuthorWithBooks";
+import { PublisherWithBooks } from "@/types/PublisherWithBooks";
 import { Table } from "@radix-ui/themes";
 import Filter from "../Filter";
 import { authorGetter, publisherGetter } from "../utils";
-import { PublisherWithBooks } from "@/types/PublisherWithBooks";
-import { AuthorWithBooks } from "@/types/AuthorWithBooks";
 
 const AllAdminTable = async ({ type }: { type: "author" | "publisher" }) => {
   const getter = type === "author" ? authorGetter : publisherGetter;

@@ -1,5 +1,4 @@
 import { Table, Text } from "@radix-ui/themes";
-import React from "react";
 
 const EmptyFiler = ({ isAdmin = false }: { isAdmin?: boolean }) => {
   if (isAdmin) {

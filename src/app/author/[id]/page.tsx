@@ -1,7 +1,7 @@
+import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import prisma from "../../../../prisma/client";
 import Header from "./components/Header";
-import dynamic from "next/dynamic";
 
 interface AuthPageProps {
   params: {

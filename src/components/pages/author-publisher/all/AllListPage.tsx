@@ -1,8 +1,7 @@
 import FilterProvider from "@/components/pages/author-publisher/all/providers/FilterProvider";
 import { Flex, Text } from "@radix-ui/themes";
-import React from "react";
-import Alphabet from "./components/Alphabet";
 import dynamic from "next/dynamic";
+import Alphabet from "./components/Alphabet";
 
 const AllClientList = dynamic(() => import("./components/client-list"));
 const AllAdminTable = dynamic(() => import("./components/admin-table"));

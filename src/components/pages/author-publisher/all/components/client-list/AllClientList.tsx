@@ -1,8 +1,8 @@
-import { Grid } from "@radix-ui/themes";
-import { authorGetter, publisherGetter } from "../utils";
 import { AuthorWithBooks } from "@/types/AuthorWithBooks";
 import { PublisherWithBooks } from "@/types/PublisherWithBooks";
+import { Grid } from "@radix-ui/themes";
 import Filter from "../Filter";
+import { authorGetter, publisherGetter } from "../utils";
 
 const AllClientList = async ({ type }: { type: "author" | "publisher" }) => {
   const getter = type === "author" ? authorGetter : publisherGetter;

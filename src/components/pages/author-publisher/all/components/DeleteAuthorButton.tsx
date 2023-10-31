@@ -4,7 +4,7 @@ import { Spinner } from "@/components/common/ui";
 import { AlertDialog, Button, Flex } from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { useState } from "react";
 
 const DeleteAuthorButton = ({ authorId }: { authorId: string }) => {
   const router = useRouter();

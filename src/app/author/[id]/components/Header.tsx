@@ -1,7 +1,6 @@
 import { Author } from "@prisma/client";
 import { Box, Flex, Grid, Text } from "@radix-ui/themes";
 import dynamic from "next/dynamic";
-import React from "react";
 
 const Image = dynamic(() => import("next/image"));
 
