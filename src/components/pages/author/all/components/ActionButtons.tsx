@@ -8,7 +8,7 @@ import DeleteAuthorButton from "./DeleteAuthorButton";
 const ActionButtons = ({ authorId }: { authorId: string }) => {
   const router = useRouter();
   return (
-    <Flex gap="3" align="center">
+    <Flex gap="3" align="center" justify="end">
       <IconButton
         color="cyan"
         onClick={() => router.push(`/admin/author/${authorId}`)}

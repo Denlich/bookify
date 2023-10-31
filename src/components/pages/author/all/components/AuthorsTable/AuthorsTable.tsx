@@ -10,8 +10,10 @@ const AuthorsTable = async () => {
       <Table.Header>
         <Table.Row>
           <Table.ColumnHeaderCell>Full Name</Table.ColumnHeaderCell>
-          <Table.ColumnHeaderCell>Biography</Table.ColumnHeaderCell>
-          <Table.ColumnHeaderCell>Actions</Table.ColumnHeaderCell>
+          <Table.ColumnHeaderCell justify="center">
+            Biography
+          </Table.ColumnHeaderCell>
+          <Table.ColumnHeaderCell justify="end">Actions</Table.ColumnHeaderCell>
         </Table.Row>
       </Table.Header>
       <Table.Body>

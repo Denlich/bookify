@@ -17,7 +17,7 @@ const AuthorsFilter = ({ authors }: { authors: AuthorWithBooks[] }) => {
           <Text className="text-cyan-700 font-semibold">
             {author.name} {author.surname}
           </Text>
-          <Text className="text-gray-500">({author.books.length})</Text>
+          <Text className="text-gray-500">({author.books!.length})</Text>
         </Flex>
       </Link>
     ));
