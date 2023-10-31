@@ -60,7 +60,7 @@ model Author {
   name      String
   surname   String
   image     String?
-  biography String?
+  biography String? @db.VarChar(1000)
   books     Book[]
 }
 

@@ -1,5 +1,5 @@
 import * as Form from "@radix-ui/react-form";
-import { TextField } from "@radix-ui/themes";
+import { TextArea, TextField } from "@radix-ui/themes";
 import { ErrorMessage } from "..";
 import { FieldError, UseFormRegister } from "react-hook-form";
 
@@ -18,6 +18,7 @@ interface FormInputProps {
   error?: FieldError;
   type?: "text" | "email" | "password";
   defaultValue?: string | number | readonly string[];
+  textArea?: boolean;
 }
 
 const FormInput: React.FC<FormInputProps> = ({
@@ -26,16 +27,26 @@ const FormInput: React.FC<FormInputProps> = ({
   error,
   type = "text",
   defaultValue,
+  textArea = false,
 }) => {
   return (
     <Form.Field name={name} className="space-y-1">
       <Form.Label>{name}</Form.Label>
       <Form.Control asChild>
-        <TextField.Input
-          {...register(name)}
-          type={type}
-          defaultValue={defaultValue}
-        />
+        {textArea ? (
+          <TextArea
+            {...register(name)}
+            name={name}
+            defaultValue={defaultValue}
+          />
+        ) : (
+          <TextField.Input
+            {...register(name)}
+            type={type}
+            name={name}
+            defaultValue={defaultValue}
+          />
+        )}
       </Form.Control>
       <ErrorMessage>{error?.message}</ErrorMessage>
     </Form.Field>

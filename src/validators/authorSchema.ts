@@ -7,7 +7,7 @@ export const authorSchema = z.object({
   biography: z
     .string()
     .min(10, "Biography must be longer than 10 characters")
-    .max(500)
+    .max(1000)
     .optional()
     .or(z.literal("")),
   books: z.array(z.string()).optional(),

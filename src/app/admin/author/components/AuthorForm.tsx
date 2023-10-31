@@ -6,7 +6,7 @@ import { authorSchema } from "@/validators/authorSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Author } from "@prisma/client";
 import * as Form from "@radix-ui/react-form";
-import { Button } from "@radix-ui/themes";
+import { Button, TextArea } from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -68,11 +68,14 @@ const AuthorForm = ({ author }: { author?: Author }) => {
       <FormInput
         register={register}
         name="biography"
+        error={errors.biography}
         defaultValue={author?.biography!}
+        textArea
       />
       <FormInput
         register={register}
         name="image"
+        error={errors.image}
         defaultValue={author?.image!}
       />
       <Form.Field name="button">
