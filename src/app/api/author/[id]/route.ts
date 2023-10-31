@@ -34,3 +34,17 @@ export async function PATCH(
 
   return NextResponse.json(updatedAuthor, { status: 200 });
 }
+
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const author = await prisma.author.findUnique({
+    where: { id: params.id },
+  });
+  if (!author)
+    return NextResponse.json({ error: "Invalid author." }, { status: 404 });
+
+  await prisma.author.delete({ where: { id: author.id } });
+  return NextResponse.json({}, { status: 200 });
+}
