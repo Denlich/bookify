@@ -3,7 +3,7 @@
 import { Box, Flex, Text } from "@radix-ui/themes";
 import React, { useContext, useMemo } from "react";
 import cn from "classnames";
-import { AuthorContext } from "../providers/AuthorProvider";
+import { AuthorContext } from "../../../../../app/author/all/providers/AuthorProvider";
 
 const Alphabet: React.FC = () => {
   const { isActive, setIsActive } = useContext(AuthorContext);

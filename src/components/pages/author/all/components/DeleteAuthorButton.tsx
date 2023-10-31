@@ -39,7 +39,7 @@ const DeleteAuthorButton = ({ authorId }: { authorId: string }) => {
         <AlertDialog.Content>
           <AlertDialog.Title>Confirm Deletion</AlertDialog.Title>
           <AlertDialog.Description>
-            Are you sure want to delete this issue? This action cannot be
+            Are you sure want to delete this author? This action cannot be
             undone.
           </AlertDialog.Description>
           <Flex mt="4" gap="3">

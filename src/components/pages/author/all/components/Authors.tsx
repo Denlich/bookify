@@ -1,6 +1,6 @@
 import { Flex, Grid, Text } from "@radix-ui/themes";
 import React from "react";
-import prisma from "../../../../../prisma/client";
+import prisma from "../../../../../../prisma/client";
 import Link from "next/link";
 
 const Authors = async () => {
