@@ -1,8 +1,8 @@
 import { Box, Grid } from "@radix-ui/themes";
 import { notFound } from "next/navigation";
 import prisma from "../../../../../prisma/client";
+import DeleteButton from "../../../../components/pages/author-publisher/all/components/DeleteButton";
 import AuthorForm from "../components/AuthorForm";
-import DeleteAuthorButton from "../../../../components/pages/author/all/components/DeleteAuthorButton";
 
 const UpdateAuthorPage = async ({ params }: { params: { id: string } }) => {
   const author = await prisma.author.findUnique({ where: { id: params.id } });
@@ -14,7 +14,7 @@ const UpdateAuthorPage = async ({ params }: { params: { id: string } }) => {
       <Box className="md:col-span-4">
         <AuthorForm author={author} />
       </Box>
-      <DeleteAuthorButton authorId={author.id} />
+      <DeleteButton itemId={author.id} type="author" />
     </Grid>
   );
 };

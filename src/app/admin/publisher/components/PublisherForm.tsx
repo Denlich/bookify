@@ -2,9 +2,9 @@
 
 import { ErrorMessage, Spinner } from "@/components/common/ui";
 import FormInput from "@/components/common/ui/form/FormInput";
-import { authorSchema } from "@/validators/authorSchema";
+import { publisherSchema } from "@/validators/publisherSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Author } from "@prisma/client";
+import { Publisher } from "@prisma/client";
 import * as Form from "@radix-ui/react-form";
 import { Button } from "@radix-ui/themes";
 import axios from "axios";
@@ -13,16 +13,16 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-type AuthorCreateData = z.infer<typeof authorSchema>;
+type PublisherCreateData = z.infer<typeof publisherSchema>;
 
-const AuthorForm = ({ author }: { author?: Author }) => {
+const PublisherForm = ({ publisher }: { publisher?: Publisher }) => {
   const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<AuthorCreateData>({
-    resolver: zodResolver(authorSchema),
+  } = useForm<PublisherCreateData>({
+    resolver: zodResolver(publisherSchema),
   });
 
   const [error, setError] = useState("");
@@ -31,16 +31,16 @@ const AuthorForm = ({ author }: { author?: Author }) => {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setIsSubmitting(true);
-      if (author) {
+      if (publisher) {
         await axios
-          .patch<Author>(`/api/author/${author.id}`, data)
+          .patch<Publisher>(`/api/publisher/${publisher.id}`, data)
           .then((res) => {
-            router.push(`/author/${author.id}`), router.refresh();
+            router.push(`/publisher/${publisher.id}`), router.refresh();
           });
       } else {
         await axios
-          .post<Author>("/api/author", data)
-          .then((res) => router.push(`/author/${res.data.id}`));
+          .post<Publisher>("/api/publisher", data)
+          .then((res) => router.push(`/publisher/${res.data.id}`));
       }
     } catch (error) {
       setIsSubmitting(false);
@@ -57,26 +57,20 @@ const AuthorForm = ({ author }: { author?: Author }) => {
         register={register}
         name="name"
         error={errors.name}
-        defaultValue={author?.name}
-      />
-      <FormInput
-        register={register}
-        name="surname"
-        error={errors.surname}
-        defaultValue={author?.surname}
+        defaultValue={publisher?.name}
       />
       <FormInput
         register={register}
         name="biography"
         error={errors.biography}
-        defaultValue={author?.biography!}
+        defaultValue={publisher?.biography!}
         textArea
       />
       <FormInput
         register={register}
         name="image"
         error={errors.image}
-        defaultValue={author?.image!}
+        defaultValue={publisher?.image!}
       />
       <Form.Field name="button">
         <Form.Submit asChild>
@@ -85,7 +79,7 @@ const AuthorForm = ({ author }: { author?: Author }) => {
             className="w-full hover:cursor-pointer bg-cyan-500 hover:bg-cyan-600 transition"
             disabled={isSubmitting}
           >
-            {author ? "Update" : "Create"}
+            {publisher ? "Update" : "Create"}
             {isSubmitting && <Spinner />}
           </Button>
         </Form.Submit>
@@ -97,4 +91,4 @@ const AuthorForm = ({ author }: { author?: Author }) => {
   );
 };
 
-export default AuthorForm;
+export default PublisherForm;

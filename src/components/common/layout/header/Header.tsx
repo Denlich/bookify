@@ -1,6 +1,6 @@
-import React, { FC } from "react";
-import DesktopHeader from "./components/desktop-header";
 import { Container } from "@radix-ui/themes";
+import { FC } from "react";
+import DesktopHeader from "./components/desktop-header";
 
 const Header: FC = async () => {
   return (

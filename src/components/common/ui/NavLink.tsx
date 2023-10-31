@@ -1,6 +1,6 @@
+import cn from "classnames";
 import NextLink, { LinkProps } from "next/link";
 import React, { HTMLProps } from "react";
-import cn from "classnames";
 
 const NavLink: React.FC<LinkProps & HTMLProps<HTMLAnchorElement>> = ({
   as,
