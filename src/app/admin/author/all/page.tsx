@@ -1,8 +1,7 @@
-import AllAuthorsListPage from "@/components/pages/author/all/AllAuthorsListPage";
-import React from "react";
+import AllListPage from "@/components/pages/author-publisher/all/AllListPage";
 
 const AdminAuthorListPage = () => {
-  return <AllAuthorsListPage isAdmin />;
+  return <AllListPage type="author" isAdmin />;
 };
 
 export default AdminAuthorListPage;

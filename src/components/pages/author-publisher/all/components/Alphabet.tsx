@@ -3,10 +3,10 @@
 import { Box, Flex, Text } from "@radix-ui/themes";
 import React, { useContext, useMemo } from "react";
 import cn from "classnames";
-import { AuthorContext } from "../../../../../app/author/all/providers/AuthorProvider";
+import { FilterContext } from "../providers/FilterProvider";
 
 const Alphabet: React.FC = () => {
-  const { letter, setLetter } = useContext(AuthorContext);
+  const { letter, setLetter } = useContext(FilterContext);
 
   const alphabet = useMemo(() => {
     const letters = [];
