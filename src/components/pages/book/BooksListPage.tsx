@@ -1,6 +1,6 @@
 import React from "react";
 import prisma from "../../../../prisma/client";
-import { Grid } from "@radix-ui/themes";
+import { Grid, Text } from "@radix-ui/themes";
 import Book from "@/app/book/components/Book";
 
 const BooksListPage = async ({
@@ -27,9 +27,13 @@ const BooksListPage = async ({
       gap="3"
       className="bg-white rounded-xl p-3"
     >
-      {list.map((book) => (
-        <Book book={book} authors={book.authors} key={book.id} />
-      ))}
+      {list.length > 0 ? (
+        list.map((book) => (
+          <Book book={book} authors={book.authors} key={book.id} />
+        ))
+      ) : (
+        <Text>No books found</Text>
+      )}
     </Grid>
   );
 };

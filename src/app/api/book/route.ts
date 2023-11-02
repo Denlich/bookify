@@ -4,7 +4,7 @@ import { bookSchema } from "@/validators/bookSchema";
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const { title, description, cost, type, image, publisherId, authors } =
+  const { title, description, cost, type, image, publisherId, authorId } =
     bookSchema.parse(body);
   const validation = bookSchema.safeParse(body);
 
@@ -19,9 +19,7 @@ export async function POST(req: NextRequest) {
       type,
       cost,
       publisherId,
-      authors: {
-        connect: authors?.map((authorId) => ({ id: authorId })),
-      },
+      authorId,
     },
   });
 

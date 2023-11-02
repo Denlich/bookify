@@ -71,7 +71,8 @@ model Book {
   image       String?
   type        BookType  @default(PAPERBACK)
   cost        Float     @default(0)
-  authors     Author[]
+  author      Author    @relation(fields: [authorId], references: [id])
+  authorId    String
   publisher   Publisher @relation(fields: [publisherId], references: [id])
   publisherId String
 }
