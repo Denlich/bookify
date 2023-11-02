@@ -1,13 +1,11 @@
-import { Book } from "@prisma/client";
+import Book from "@/app/book/components/Book";
 import { Grid } from "@radix-ui/themes";
 
 const Books = ({ books }: { books: Book[] }) => {
   return (
     <Grid gap="3" columns="3" className="bg-white rounded-xl p-5 mt-5">
       {books.map((book) => (
-        <div key={book.id}>
-          <h2>{book.title}</h2>
-        </div>
+        <Book book={book} authorId={book.authorId} key={book.id} />
       ))}
     </Grid>
   );

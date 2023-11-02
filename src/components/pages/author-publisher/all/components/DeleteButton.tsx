@@ -11,7 +11,7 @@ const DeleteButton = ({
   type,
 }: {
   itemId: string;
-  type: "author" | "publisher";
+  type: "author" | "publisher" | "book";
 }) => {
   const router = useRouter();
   const [error, setError] = useState(false);

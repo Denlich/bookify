@@ -67,9 +67,20 @@ model Author {
 model Book {
   id          String    @id @default(cuid())
   title       String
-  authors     Author[]
+  description String?   @db.VarChar(1000)
+  image       String?
+  type        BookType  @default(PAPERBACK)
+  cost        Float     @default(0)
+  author      Author    @relation(fields: [authorId], references: [id])
+  authorId    String
   publisher   Publisher @relation(fields: [publisherId], references: [id])
   publisherId String
+}
+
+enum BookType {
+  AUDIOBOOK
+  PAPERBACK
+  EBOOK
 }
 
 model Publisher {

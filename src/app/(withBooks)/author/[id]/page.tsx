@@ -14,7 +14,9 @@ const Books = dynamic(() => import("../../components/Books"));
 const AuthorPage = async ({ params }: AuthPageProps) => {
   const author = await prisma.author.findUnique({
     where: { id: params.id },
-    include: { books: true },
+    include: {
+      books: true,
+    },
   });
 
   if (!author) notFound();

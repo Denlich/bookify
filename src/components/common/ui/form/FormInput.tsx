@@ -13,10 +13,16 @@ interface FormInputProps {
     | `books.${number}`
     | "email"
     | "password"
-    | "username";
+    | "username"
+    | "type"
+    | "title"
+    | "description"
+    | "cost"
+    | "publisherId"
+    | "authorId";
   register: UseFormRegister<any>;
   error?: FieldError;
-  type?: "text" | "email" | "password";
+  type?: "text" | "email" | "password" | "number";
   defaultValue?: string | number | readonly string[];
   textArea?: boolean;
 }
@@ -41,7 +47,7 @@ const FormInput: React.FC<FormInputProps> = ({
           />
         ) : (
           <TextField.Input
-            {...register(name)}
+            {...register(name, { valueAsNumber: type === "number" })}
             type={type}
             name={name}
             defaultValue={defaultValue}
