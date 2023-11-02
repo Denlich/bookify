@@ -8,18 +8,7 @@ const BooksListPage = async ({
 }: {
   type: "AUDIOBOOK" | "PAPERBACK" | "EBOOK";
 }) => {
-  const list = await prisma.book.findMany({
-    where: { type },
-    include: {
-      authors: {
-        select: {
-          name: true,
-          surname: true,
-          id: true,
-        },
-      },
-    },
-  });
+  const list = await prisma.book.findMany({ where: { type } });
 
   return (
     <Grid
@@ -29,7 +18,7 @@ const BooksListPage = async ({
     >
       {list.length > 0 ? (
         list.map((book) => (
-          <Book book={book} authors={book.authors} key={book.id} />
+          <Book book={book} authorId={book.authorId} key={book.id} />
         ))
       ) : (
         <Text>No books found</Text>
