@@ -18,7 +18,7 @@ const CartItem: React.FC<CartItemProps> = async ({ item }) => {
 
   return (
     <Flex
-      direction={{ initial: "column", sm: "row" }}
+      direction={{ initial: "column", md: "row" }}
       className="bg-white"
       gap="5"
     >

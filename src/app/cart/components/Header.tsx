@@ -13,7 +13,10 @@ const Header = ({ isEmpty }: { isEmpty: boolean }) => {
         <Text
           color="cyan"
           className="hover:cursor-pointer hover:text-red-500 transition"
-          onClick={async () => await axios.delete(`/api/cart`)}
+          onClick={async () => {
+            await axios.delete(`/api/cart`);
+            window.location.reload();
+          }}
         >
           Clear
         </Text>

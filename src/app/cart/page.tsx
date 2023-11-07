@@ -1,9 +1,9 @@
-import { Flex, Text } from "@radix-ui/themes";
-import Items from "./components/Items";
-import { getServerSession } from "next-auth";
 import authOptions from "@/auth/authOptions";
-import Header from "./components/Header";
+import { Flex, Text } from "@radix-ui/themes";
+import { getServerSession } from "next-auth";
 import prisma from "../../../prisma/client";
+import Header from "./components/Header";
+import Items from "./components/Items";
 
 const CartPage = async () => {
   const session = await getServerSession(authOptions);
@@ -23,5 +23,7 @@ const CartPage = async () => {
     </Flex>
   );
 };
+
+export const dynamic = "force-dynamic";
 
 export default CartPage;

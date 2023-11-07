@@ -1,7 +1,7 @@
 import React from "react";
 import prisma from "../../../../prisma/client";
-import { Flex, Text } from "@radix-ui/themes";
-import CartItem from "./CartItem";
+import { Text } from "@radix-ui/themes";
+import CartList from "./CartList";
 
 interface ItemsProps {
   userId: string;
@@ -13,7 +13,11 @@ const Items: React.FC<ItemsProps> = async ({ userId }) => {
       userId,
     },
     include: {
-      items: true,
+      items: {
+        include: {
+          book: true,
+        },
+      },
     },
   });
 
@@ -26,13 +30,9 @@ const Items: React.FC<ItemsProps> = async ({ userId }) => {
 
   if (cart?.items.length === 0) return <Text size="3">The cart is empty</Text>;
 
-  return (
-    <Flex direction="column" className="bg-white">
-      {cart?.items.map((item) => (
-        <CartItem key={item.id} item={item} />
-      ))}
-    </Flex>
-  );
+  return <CartList cartItems={cart?.items!} />;
 };
+
+export const dynamic = "force-dynamic";
 
 export default Items;

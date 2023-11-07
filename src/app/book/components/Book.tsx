@@ -45,7 +45,11 @@ const Book = async ({ book, authorId }: BookProps) => {
         </Text>
         <Text className="text-cya-500">${book.cost}</Text>
       </Info>
-      <AddToCartButton bookId={book.id} isInCart={isInCart} />
+      <AddToCartButton
+        bookId={book.id}
+        isInCart={isInCart}
+        cartId={cart?.id!}
+      />
     </Flex>
   );
 };
