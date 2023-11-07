@@ -58,8 +58,8 @@ model VerificationToken {
 
 model Author {
   id        String  @id @default(cuid())
-  name      String
-  surname   String
+  name      String  @unique
+  surname   String  @unique
   image     String?
   biography String? @db.VarChar(1000)
   books     Book[]
