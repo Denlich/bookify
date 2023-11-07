@@ -28,7 +28,7 @@ const Items: React.FC<ItemsProps> = async ({ userId }) => {
 
   return (
     <Flex direction="column" className="bg-white">
-      {cart!.items.map((item) => (
+      {cart?.items.map((item) => (
         <CartItem key={item.id} item={item} />
       ))}
     </Flex>

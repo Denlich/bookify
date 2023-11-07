@@ -17,7 +17,11 @@ const CartItem: React.FC<CartItemProps> = async ({ item }) => {
   });
 
   return (
-    <Flex className="bg-white" gap="5">
+    <Flex
+      direction={{ initial: "column", sm: "row" }}
+      className="bg-white"
+      gap="5"
+    >
       <Box className="w-64 h-64 bg-gray-200 rounded-xl">
         {book!.image && (
           <Image src={book!.image} alt={book!.title} width={450} height={450} />

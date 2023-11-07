@@ -23,7 +23,8 @@ const Quantity = ({ quantity }: { quantity: number }) => {
         className="w-16 text-center"
         variant="soft"
         color="cyan"
-        value={amount}
+        defaultValue={amount}
+        onChange={(e) => setAmount(parseInt(e.target.value))}
       />
 
       <IconButton
