@@ -1,9 +1,12 @@
 import React from "react";
 import prisma from "../../../../prisma/client";
 import { notFound } from "next/navigation";
-import { Flex, Grid, Text, Box, Button } from "@radix-ui/themes";
+import { Flex, Grid, Text, Box, IconButton } from "@radix-ui/themes";
 import Link from "next/link";
 import Image from "next/image";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import authOptions from "@/auth/authOptions";
+import { getServerSession } from "next-auth";
 
 const BookPage = async ({ params }: { params: { id: string } }) => {
   const book = await prisma.book.findUnique({ where: { id: params.id } });
@@ -13,6 +16,13 @@ const BookPage = async ({ params }: { params: { id: string } }) => {
   const publisher = await prisma.publisher.findUnique({
     where: { id: book?.publisherId },
   });
+  const session = await getServerSession(authOptions);
+  const cart = await prisma.cart.findUnique({
+    where: { userId: session?.user.id },
+    include: { items: true },
+  });
+
+  const isInCart = cart?.items.some((item) => item.bookId === book?.id);
 
   if (!book) notFound();
 
@@ -44,9 +54,14 @@ const BookPage = async ({ params }: { params: { id: string } }) => {
       <Text className="col-span-3 text-start">{book.description}</Text>
       <Flex direction="column" gap="2">
         <Text className="font-bold text-xl text-start">${book.cost}</Text>
-        <Button className="w-full hover:cursor-pointer bg-cyan-500 hover:bg-cyan-600 transition">
+        <IconButton
+          className="w-full hover:cursor-pointer gap-3"
+          color="cyan"
+          disabled={isInCart}
+        >
           Add to cart
-        </Button>
+          <AiOutlineShoppingCart width="24" height="24" />
+        </IconButton>
       </Flex>
     </Grid>
   );

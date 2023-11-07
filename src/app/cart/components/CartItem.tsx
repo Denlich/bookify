@@ -27,17 +27,17 @@ const CartItem: React.FC<CartItemProps> = async ({ item }) => {
       <Flex direction="column" justify="between">
         <Flex direction="column" gap="1">
           <Text size="5" weight="bold">
-            {book?.title}
+            <Link href={`/book/${book!.id}`}>{book!.title}</Link>
           </Text>
           <Text size="3" color="gray">
-            <Link href={`/author/${book?.authorId}`}>
-              {book?.author.name} {book?.author.surname}
+            <Link href={`/author/${book!.authorId}`}>
+              {book!.author.name} {book!.author.surname}
             </Link>
           </Text>
         </Flex>
         <Flex direction="column" gap="3">
           <Text size="5" weight="bold">
-            ${book?.cost}
+            ${book!.cost}
           </Text>
           <Quantity quantity={item.quantity} />
         </Flex>
