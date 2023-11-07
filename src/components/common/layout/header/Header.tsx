@@ -4,7 +4,7 @@ import DesktopHeader from "./components/desktop-header";
 
 const Header: FC = async () => {
   return (
-    <Container className="py-4">
+    <Container className="py-4" mx="3">
       <DesktopHeader />
     </Container>
   );

@@ -33,8 +33,8 @@ const BookPage = async ({ params }: { params: { id: string } }) => {
       align="start"
       gap="2"
     >
-      <Flex direction="column" className="col-span-2">
-        <Box className="w-72 h-96 bg-gray-200 rounded-lg">
+      <Flex direction="column" className="md:col-span-2">
+        <Box className="w-full h-96 bg-gray-200 rounded-lg md:w-72">
           {book.image && (
             <Image src={book.image} alt={book.title} layout="fill" />
           )}
@@ -51,7 +51,7 @@ const BookPage = async ({ params }: { params: { id: string } }) => {
           </Link>
         </Text>
       </Flex>
-      <Text className="col-span-3 text-start">{book.description}</Text>
+      <Text className="md:col-span-3 text-start">{book.description}</Text>
       <Flex direction="column" gap="2">
         <Text className="font-bold text-xl text-start">${book.cost}</Text>
         <IconButton

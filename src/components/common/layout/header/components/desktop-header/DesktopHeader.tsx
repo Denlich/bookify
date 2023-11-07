@@ -6,16 +6,14 @@ import { getServerSession } from "next-auth";
 import { FC } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import HomeLink from "../HomeLink";
-import SearchBox from "../SearchBox";
 import UserAccountNav from "./UserAccountNav";
 
 const DesktopHeader: FC = async () => {
   const session = await getServerSession(authOptions);
 
   return (
-    <Flex justify="between" align="center">
+    <Flex justify="between" align="center" py="3">
       <HomeLink />
-      <SearchBox />
       <Flex gap="4">
         <NavLink href="/cart" className="nav-link">
           <AiOutlineShoppingCart />
