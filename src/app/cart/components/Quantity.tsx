@@ -37,14 +37,21 @@ const Quantity = ({
         />
       </IconButton>
 
-      <TextField.Input
-        className="w-16 text-center"
-        variant="soft"
-        color="cyan"
-        defaultValue={amount}
-        value={amount}
-        onChange={(e) => setAmount(parseInt(e.target.value))}
-      />
+      <TextField.Root>
+        <TextField.Input
+          className="w-16 text-center"
+          variant="soft"
+          color="cyan"
+          defaultValue={1}
+          value={amount}
+          onChange={(e) => {
+            setAmount(parseInt(e.target.value));
+            updateCartItemQuantity(parseInt(e.target.value), cartItemId);
+          }}
+          min="1"
+          type="number"
+        />
+      </TextField.Root>
 
       <IconButton
         variant="outline"

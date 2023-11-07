@@ -2,7 +2,7 @@
 
 import useCartStore from "@/stores/cart-store";
 import { Book, CartItem } from "@prisma/client";
-import { Flex } from "@radix-ui/themes";
+import { Flex, Text } from "@radix-ui/themes";
 import React, { useEffect, useState } from "react";
 
 interface FooterProps {
@@ -30,7 +30,17 @@ const Footer: React.FC<FooterProps> = ({ cartItems }) => {
     );
   }, [cartItems, cartList]);
 
-  return <Flex>${total}</Flex>;
+  return (
+    <Flex
+      mt="5"
+      pt="3"
+      justify="between"
+      align="center"
+      className="border-t-2 border-dashed border-gray-300"
+    >
+      <Text size="5">Total</Text>${total}
+    </Flex>
+  );
 };
 
 export default Footer;
