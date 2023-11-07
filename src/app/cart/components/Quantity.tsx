@@ -42,7 +42,6 @@ const Quantity = ({
           className="w-16 text-center"
           variant="soft"
           color="cyan"
-          defaultValue={1}
           value={amount}
           onChange={(e) => {
             setAmount(parseInt(e.target.value));

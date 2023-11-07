@@ -3,6 +3,7 @@
 import useCartStore from "@/stores/cart-store";
 import { IconButton } from "@radix-ui/themes";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
@@ -17,10 +18,12 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
   isInCart,
   cartId,
 }) => {
+  const router = useRouter();
   const addCartItem = useCartStore((state) => state.addCartItem);
   const handleAddToCart = async () => {
     await axios.post("/api/cart/cartItem", { bookId, quantity: 1 });
     addCartItem({ id: bookId + 1, bookId, quantity: 1, cartId });
+    router.refresh();
   };
   const cart = useCartStore((state) => state.cartItems);
 
