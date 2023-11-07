@@ -5,7 +5,6 @@ import { HiOutlineBookOpen } from "react-icons/hi";
 
 const Sidebar = () => {
   const links = [
-    { label: "Sales", href: "/sales" },
     {
       label: "Printed books",
       href: "/book/printed",

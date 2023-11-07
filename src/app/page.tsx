@@ -1,9 +1,8 @@
-import authOptions from "@/auth/authOptions";
-import { Text } from "@radix-ui/themes";
-import { getServerSession } from "next-auth";
+import prisma from "../../prisma/client";
+import HomePage from "@/components/pages/home/HomePage";
 
 export default async function Home() {
-  const session = await getServerSession(authOptions);
+  const books = await prisma.book.findMany();
 
-  return <Text>Hello world! {session?.user.username}</Text>;
+  return <HomePage books={books} />;
 }
