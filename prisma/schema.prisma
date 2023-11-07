@@ -43,6 +43,7 @@ model User {
   password      String?
   emailVerified DateTime?
   image         String?
+  cart          Cart?
   accounts      Account[]
   sessions      Session[]
 }
@@ -65,16 +66,17 @@ model Author {
 }
 
 model Book {
-  id          String    @id @default(cuid())
+  id          String     @id @default(cuid())
   title       String
-  description String?   @db.VarChar(1000)
+  description String?    @db.VarChar(1000)
   image       String?
-  type        BookType  @default(PAPERBACK)
-  cost        Float     @default(0)
-  author      Author    @relation(fields: [authorId], references: [id])
+  type        BookType   @default(PAPERBACK)
+  cost        Float      @default(0)
+  author      Author     @relation(fields: [authorId], references: [id])
   authorId    String
-  publisher   Publisher @relation(fields: [publisherId], references: [id])
+  publisher   Publisher  @relation(fields: [publisherId], references: [id])
   publisherId String
+  CartItem    CartItem[]
 }
 
 enum BookType {
@@ -89,4 +91,20 @@ model Publisher {
   image     String?
   biography String? @db.VarChar(1000)
   books     Book[]
+}
+
+model Cart {
+  id     String     @id @default(cuid())
+  userId String     @unique
+  items  CartItem[]
+  user   User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model CartItem {
+  id       String @id @default(cuid())
+  bookId   String
+  quantity Int
+  cartId   String
+  book     Book   @relation(fields: [bookId], references: [id])
+  cart     Cart   @relation(fields: [cartId], references: [id])
 }
