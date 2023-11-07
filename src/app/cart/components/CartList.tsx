@@ -1,10 +1,11 @@
 import { Flex } from "@radix-ui/themes";
 import React from "react";
 import CartItem from "./CartItem";
-import { CartItem as CartItemType } from "@prisma/client";
+import { Book, CartItem as CartItemType } from "@prisma/client";
+import Footer from "./Footer";
 
 interface CartListProps {
-  cartItems: CartItemType[];
+  cartItems: ({ book: Book } & CartItemType)[];
 }
 
 const CartList: React.FC<CartListProps> = ({ cartItems }) => {
@@ -13,6 +14,7 @@ const CartList: React.FC<CartListProps> = ({ cartItems }) => {
       {cartItems.map((item) => (
         <CartItem key={item.id} item={item} />
       ))}
+      <Footer cartItems={cartItems} />
     </Flex>
   );
 };

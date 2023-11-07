@@ -43,7 +43,7 @@ const CartItem: React.FC<CartItemProps> = async ({ item }) => {
           <Text size="5" weight="bold">
             ${book!.cost}
           </Text>
-          <Quantity quantity={item.quantity} />
+          <Quantity quantity={item.quantity} cartItemId={item.id} />
         </Flex>
       </Flex>
     </Flex>
