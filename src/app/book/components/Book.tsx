@@ -5,6 +5,7 @@ import AddToCartButton from "./AddToCartButton";
 import Info from "./Info";
 import { getServerSession } from "next-auth";
 import authOptions from "@/auth/authOptions";
+import Image from "next/image";
 
 interface BookProps {
   book: Book;
@@ -32,7 +33,11 @@ const Book = async ({ book, authorId }: BookProps) => {
       className="bg-white rounded-xl p-3 hover:bg-gray-50"
       gap="3"
     >
-      <Box className="w-full h-64 bg-gray-200 rounded-xl" />
+      <Box className="w-full h-64 bg-gray-200 rounded-xl">
+        {book.image && (
+          <Image src={book.image} alt={book.title} width={300} height={450} />
+        )}
+      </Box>
       <Info bookId={book.id}>
         <Text className="text-lg font-semibold">{book.title}</Text>
         <Text className="text-sm">

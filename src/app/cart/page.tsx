@@ -7,7 +7,7 @@ const CartPage = async () => {
   const session = await getServerSession(authOptions);
 
   return (
-    <Flex direction="column" gap="2" p="3" className="bg-white rounded-xl">
+    <Flex direction="column" gap="5" p="3" className="bg-white rounded-xl">
       <Text size="5" weight="bold">
         Cart
       </Text>
