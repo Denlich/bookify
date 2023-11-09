@@ -10,7 +10,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 interface AddToCartButtonProps {
   bookId: string;
   isInCart: boolean;
-  cartId: string;
+  cartId?: string;
 }
 
 const AddToCartButton: React.FC<AddToCartButtonProps> = ({
@@ -21,6 +21,9 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
   const router = useRouter();
   const addCartItem = useCartStore((state) => state.addCartItem);
   const handleAddToCart = async () => {
+    if (!cartId) {
+      return;
+    }
     await axios.post("/api/cart/cartItem", { bookId, quantity: 1 });
     addCartItem({ id: bookId + 1, bookId, quantity: 1, cartId });
     router.refresh();
@@ -34,10 +37,16 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
       color="cyan"
       className="w-full gap-3 hover:cursor-pointer"
       onClick={handleAddToCart}
-      disabled={isInCart || storeCheck}
+      disabled={isInCart || storeCheck || !cartId}
     >
-      Add to cart
-      <AiOutlineShoppingCart width="24" height="24" />
+      {cartId ? (
+        <>
+          Add to cart
+          <AiOutlineShoppingCart width="24" height="24" />
+        </>
+      ) : (
+        "Please, login"
+      )}
     </IconButton>
   );
 };
