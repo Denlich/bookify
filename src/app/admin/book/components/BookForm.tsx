@@ -6,12 +6,13 @@ import { bookSchema } from "@/validators/bookSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Book } from "@prisma/client";
 import * as Form from "@radix-ui/react-form";
-import { Button, Select } from "@radix-ui/themes";
+import { Box, Button, Flex, Select } from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import Modal from "./Modal";
 
 type BookCreateData = z.infer<typeof bookSchema>;
 
@@ -27,6 +28,13 @@ const BookForm = ({ book }: { book?: Book }) => {
 
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [publisherId, setPublisherId] = useState<string | undefined>(undefined);
+  const [authorId, setAuthorId] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    setPublisherId(book?.publisherId);
+    setAuthorId(book?.authorId);
+  }, [book]);
 
   const onSubmit = handleSubmit(async (data) => {
     try {
@@ -86,18 +94,33 @@ const BookForm = ({ book }: { book?: Book }) => {
         </select>
         <ErrorMessage>{errors.type?.message}</ErrorMessage>
       </Form.Field>
-      <FormInput
-        register={register}
-        name="publisherId"
-        error={errors.publisherId}
-        defaultValue={book?.publisherId!}
-      />
-      <FormInput
-        register={register}
-        name="authorId"
-        error={errors.authorId}
-        defaultValue={book?.authorId}
-      />
+
+      <Flex align="center" gap="2">
+        <Box className="flex-1">
+          <FormInput
+            register={register}
+            name="publisherId"
+            error={errors.publisherId}
+            defaultValue={publisherId}
+            value={authorId}
+          />
+        </Box>
+        <Modal type="publisher" setPublisherId={setPublisherId} />
+      </Flex>
+
+      <Flex align="center" gap="2">
+        <Box className="flex-1">
+          <FormInput
+            register={register}
+            name="authorId"
+            error={errors.authorId}
+            defaultValue={authorId}
+            value={authorId}
+          />
+        </Box>
+        <Modal type="author" setAuthorId={setAuthorId} />
+      </Flex>
+
       <FormInput
         register={register}
         name="image"

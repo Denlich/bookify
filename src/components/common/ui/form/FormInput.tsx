@@ -24,6 +24,7 @@ interface FormInputProps {
   error?: FieldError;
   type?: "text" | "email" | "password" | "number";
   defaultValue?: string | number | readonly string[];
+  value?: string | number | readonly string[];
   textArea?: boolean;
 }
 

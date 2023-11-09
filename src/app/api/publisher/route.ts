@@ -20,3 +20,17 @@ export async function POST(req: NextRequest) {
 
   return NextResponse.json(newPublishingHouse, { status: 201 });
 }
+
+export async function GET(req: NextRequest) {
+  const name = req.nextUrl.searchParams.get("name");
+  const publishingHouse = await prisma.publisher.findMany({
+    where: {
+      name: {
+        contains: name || "",
+      },
+    },
+    take: 10,
+  });
+
+  return NextResponse.json(publishingHouse, { status: 200 });
+}

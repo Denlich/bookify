@@ -24,3 +24,26 @@ export async function POST(req: NextRequest) {
 
   return NextResponse.json(newAuthor, { status: 201 });
 }
+
+export async function GET(req: NextRequest) {
+  const name = req.nextUrl.searchParams.get("name");
+  const author = await prisma.author.findMany({
+    where: {
+      OR: [
+        {
+          name: {
+            contains: name || "",
+          },
+        },
+        {
+          surname: {
+            contains: name || "",
+          },
+        },
+      ],
+    },
+    take: 10,
+  });
+
+  return NextResponse.json(author, { status: 200 });
+}
