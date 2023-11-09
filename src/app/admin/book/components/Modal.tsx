@@ -5,14 +5,22 @@ import { Button, Dialog, Flex, TextFieldInput, Box } from "@radix-ui/themes";
 import axios from "axios";
 import React, { useEffect } from "react";
 import cn from "classnames";
+import { UseFormSetValue } from "react-hook-form";
 
 interface ModalProps {
   type: "publisher" | "author";
-  setPublisherId?: React.Dispatch<React.SetStateAction<string | undefined>>;
-  setAuthorId?: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setValue: UseFormSetValue<{
+    title: string;
+    publisherId: string;
+    authorId: string;
+    description: string;
+    type: "AUDIOBOOK" | "PAPERBACK" | "EBOOK";
+    cost: number;
+    image?: string | undefined;
+  }>;
 }
 
-const Modal: React.FC<ModalProps> = ({ type, setAuthorId, setPublisherId }) => {
+const Modal: React.FC<ModalProps> = ({ type, setValue }) => {
   const [entity, setEntity] = React.useState("");
   const [entityList, setEntityList] = React.useState<Author[] | Publisher[]>(
     []
@@ -52,9 +60,10 @@ const Modal: React.FC<ModalProps> = ({ type, setAuthorId, setPublisherId }) => {
                       item.id !== entityList[0].id,
                   })}
                   onClick={() =>
-                    setPublisherId
-                      ? setPublisherId(item.id)
-                      : setAuthorId!(item.id)
+                    setValue(
+                      type === "author" ? "authorId" : "publisherId",
+                      item.id!
+                    )
                   }
                 >
                   {item.name} {"surname" in item && item.surname}

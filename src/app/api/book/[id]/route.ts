@@ -8,8 +8,8 @@ export async function PATCH(
 ) {
   const body = await req.json();
   const { authorId, cost, description, publisherId, title, type, image } =
-    bookSchema.parse(body);
-  const validation = bookSchema.safeParse(body);
+    bookSchema.parse(body.data);
+  const validation = bookSchema.safeParse(body.data);
 
   if (!validation.success)
     return NextResponse.json(validation.error.format(), { status: 400 });

@@ -10,7 +10,7 @@ import { Box, Button, Flex, Select } from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { z } from "zod";
 import Modal from "./Modal";
 
@@ -22,19 +22,18 @@ const BookForm = ({ book }: { book?: Book }) => {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm<BookCreateData>({
     resolver: zodResolver(bookSchema),
   });
 
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [publisherId, setPublisherId] = useState<string | undefined>(undefined);
-  const [authorId, setAuthorId] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    setPublisherId(book?.publisherId);
-    setAuthorId(book?.authorId);
-  }, [book]);
+    setValue("publisherId", book?.publisherId || "");
+    setValue("authorId", book?.authorId || "");
+  }, [book, setValue]);
 
   const onSubmit = handleSubmit(async (data) => {
     try {
@@ -101,11 +100,9 @@ const BookForm = ({ book }: { book?: Book }) => {
             register={register}
             name="publisherId"
             error={errors.publisherId}
-            defaultValue={publisherId}
-            value={authorId}
           />
         </Box>
-        <Modal type="publisher" setPublisherId={setPublisherId} />
+        <Modal type="publisher" setValue={setValue} />
       </Flex>
 
       <Flex align="center" gap="2">
@@ -114,11 +111,9 @@ const BookForm = ({ book }: { book?: Book }) => {
             register={register}
             name="authorId"
             error={errors.authorId}
-            defaultValue={authorId}
-            value={authorId}
           />
         </Box>
-        <Modal type="author" setAuthorId={setAuthorId} />
+        <Modal type="author" setValue={setValue} />
       </Flex>
 
       <FormInput
