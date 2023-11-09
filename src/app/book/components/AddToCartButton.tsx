@@ -22,6 +22,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
   const addCartItem = useCartStore((state) => state.addCartItem);
   const handleAddToCart = async () => {
     if (!cartId) {
+      router.push("/sign-in");
       return;
     }
     await axios.post("/api/cart/cartItem", { bookId, quantity: 1 });
@@ -37,16 +38,10 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
       color="cyan"
       className="w-full gap-3 hover:cursor-pointer"
       onClick={handleAddToCart}
-      disabled={isInCart || storeCheck || !cartId}
+      disabled={isInCart || storeCheck}
     >
-      {cartId ? (
-        <>
-          Add to cart
-          <AiOutlineShoppingCart width="24" height="24" />
-        </>
-      ) : (
-        "Please, login"
-      )}
+      Add to cart
+      <AiOutlineShoppingCart width="24" height="24" />
     </IconButton>
   );
 };
