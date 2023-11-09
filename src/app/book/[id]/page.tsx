@@ -7,6 +7,7 @@ import Image from "next/image";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import authOptions from "@/auth/authOptions";
 import { getServerSession } from "next-auth";
+import AddToCartButton from "../components/AddToCartButton";
 
 const BookPage = async ({ params }: { params: { id: string } }) => {
   const book = await prisma.book.findUnique({ where: { id: params.id } });
@@ -54,14 +55,11 @@ const BookPage = async ({ params }: { params: { id: string } }) => {
       <Text className="md:col-span-3 text-start">{book.description}</Text>
       <Flex direction="column" gap="2">
         <Text className="font-bold text-xl text-start">${book.cost}</Text>
-        <IconButton
-          className="w-full hover:cursor-pointer gap-3"
-          color="cyan"
-          disabled={isInCart}
-        >
-          Add to cart
-          <AiOutlineShoppingCart width="24" height="24" />
-        </IconButton>
+        <AddToCartButton
+          bookId={book.id}
+          cartId={cart!.id}
+          isInCart={isInCart!}
+        />
       </Flex>
     </Grid>
   );
