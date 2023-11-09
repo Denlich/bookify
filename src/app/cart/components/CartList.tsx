@@ -10,7 +10,7 @@ interface CartListProps {
 
 const CartList: React.FC<CartListProps> = ({ cartItems }) => {
   return (
-    <Flex direction="column" className="bg-white">
+    <Flex direction="column" className="bg-white" gap="3">
       {cartItems.map((item) => (
         <CartItem key={item.id} item={item} />
       ))}

@@ -1,24 +1,14 @@
+"use client";
+
 import { NavLink } from "@/components/common/ui";
 import { Flex } from "@radix-ui/themes";
-import { BsCloudArrowDown, BsHeadphones } from "react-icons/bs";
-import { HiOutlineBookOpen } from "react-icons/hi";
+import { links } from "../data/links";
+import { useGetWindowWidth } from "@/hooks/useGetWindowWidth";
 
 const Sidebar = () => {
-  const links = [
-    {
-      label: "Printed books",
-      href: "/book/printed",
-      Icon: () => <HiOutlineBookOpen />,
-    },
-    {
-      label: "E-books",
-      href: "/book/e-book",
-      Icon: () => <BsCloudArrowDown />,
-    },
-    { label: "Audio books", href: "/book/audio", Icon: () => <BsHeadphones /> },
-    { label: "Publishing houses", href: "/publisher/all" },
-    { label: "Authors", href: "/author/all" },
-  ];
+  const windowWidth = useGetWindowWidth();
+
+  if (windowWidth < 768) return null;
 
   return (
     <aside>
