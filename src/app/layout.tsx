@@ -21,7 +21,7 @@ export default function RootLayout({
         <Theme>
           <Provider>
             <Header />
-            <Container>
+            <Container mx="3" pb="3">
               <Grid columns={{ initial: "1", sm: "5" }} gap="5">
                 <Sidebar />
                 <main className="md:col-span-4">{children}</main>

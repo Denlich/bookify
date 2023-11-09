@@ -1,9 +1,10 @@
 "use client";
 
 import { ErrorMessage, Link } from "@/components/common/ui";
+import FormInput from "@/components/common/ui/form/FormInput";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as Form from "@radix-ui/react-form";
-import { Button, Flex, Text, TextField } from "@radix-ui/themes";
+import { Button, Flex, Text } from "@radix-ui/themes";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -53,20 +54,18 @@ const SignInPage = () => {
       className="space-y-5 bg-white px-3 py-5 rounded-lg"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Form.Field name="email" className="space-y-1">
-        <Form.Label>Email</Form.Label>
-        <Form.Control asChild>
-          <TextField.Input type="email" {...register("email")} />
-        </Form.Control>
-        <ErrorMessage>{errors.email?.message}</ErrorMessage>
-      </Form.Field>
-      <Form.Field name="password" className="space-y-1">
-        <Form.Label>Password</Form.Label>
-        <Form.Control asChild>
-          <TextField.Input type="password" {...register("password")} />
-        </Form.Control>
-        <ErrorMessage>{errors.password?.message}</ErrorMessage>
-      </Form.Field>
+      <FormInput
+        register={register}
+        name="email"
+        error={errors.email}
+        type="email"
+      />
+      <FormInput
+        register={register}
+        name="password"
+        error={errors.password}
+        type="password"
+      />
       <Form.Field name="button">
         <Form.Submit asChild>
           <Button className="w-full hover:cursor-pointer bg-cyan-500 hover:bg-cyan-600 transition">

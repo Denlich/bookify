@@ -1,32 +1,24 @@
-import React from "react";
-import { Flex } from "@radix-ui/themes";
+"use client";
+
 import { NavLink } from "@/components/common/ui";
-import { ListBulletIcon } from "@radix-ui/react-icons";
-import { HiOutlineBookOpen } from "react-icons/hi";
-import { BsHeadphones, BsCloudArrowDown } from "react-icons/bs";
+import { Flex } from "@radix-ui/themes";
+import { links } from "../data/links";
+import { useGetWindowWidth } from "@/hooks/useGetWindowWidth";
 
 const Sidebar = () => {
+  const windowWidth = useGetWindowWidth();
+
+  if (windowWidth < 768) return null;
+
   return (
     <aside>
       <Flex direction="column" gap="4">
-        <NavLink href="/">Sales</NavLink>
-        <NavLink href="/">
-          <ListBulletIcon /> Categories
-        </NavLink>
-        <NavLink href="/">
-          <HiOutlineBookOpen />
-          Printed books
-        </NavLink>
-        <NavLink href="/">
-          <BsCloudArrowDown />
-          E-books
-        </NavLink>
-        <NavLink href="/">
-          <BsHeadphones />
-          Audio books
-        </NavLink>
-        <NavLink href="/">Publishing houses</NavLink>
-        <NavLink href="/">Authors</NavLink>
+        {links.map(({ label, href, Icon }) => (
+          <NavLink key={href} href={href}>
+            {Icon && <Icon />}
+            {label}
+          </NavLink>
+        ))}
       </Flex>
     </aside>
   );

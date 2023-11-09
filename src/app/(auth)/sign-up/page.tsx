@@ -1,9 +1,10 @@
 "use client";
 
-import { ErrorMessage, Link } from "@/components/common/ui";
+import { Link } from "@/components/common/ui";
+import FormInput from "@/components/common/ui/form/FormInput";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as Form from "@radix-ui/react-form";
-import { Button, Flex, Text, TextField } from "@radix-ui/themes";
+import { Button, Flex, Text } from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -45,41 +46,21 @@ const SignUpPage = () => {
       className="space-y-5 bg-white px-3 py-5 rounded-lg"
       onSubmit={onSubmit}
     >
-      <Form.Field name="name" className="space-y-1">
-        <Form.Label>Name</Form.Label>
-        <Form.Control asChild>
-          <TextField.Input {...register("name")} />
-        </Form.Control>
-        <ErrorMessage>{errors.name?.message}</ErrorMessage>
-      </Form.Field>
-      <Form.Field name="surname" className="space-y-1">
-        <Form.Label>Surname</Form.Label>
-        <Form.Control asChild>
-          <TextField.Input {...register("surname")} />
-        </Form.Control>
-        <ErrorMessage>{errors.surname?.message}</ErrorMessage>
-      </Form.Field>
-      <Form.Field name="username" className="space-y-1">
-        <Form.Label>Username</Form.Label>
-        <Form.Control asChild>
-          <TextField.Input {...register("username")} />
-        </Form.Control>
-        <ErrorMessage>{errors.username?.message}</ErrorMessage>
-      </Form.Field>
-      <Form.Field name="email" className="space-y-1">
-        <Form.Label>Email</Form.Label>
-        <Form.Control asChild>
-          <TextField.Input type="email" {...register("email")} />
-        </Form.Control>
-        <ErrorMessage>{errors.email?.message}</ErrorMessage>
-      </Form.Field>
-      <Form.Field name="password" className="space-y-1">
-        <Form.Label>Password</Form.Label>
-        <Form.Control asChild>
-          <TextField.Input type="password" {...register("password")} />
-        </Form.Control>
-        <ErrorMessage>{errors.password?.message}</ErrorMessage>
-      </Form.Field>
+      <FormInput register={register} name="name" error={errors.name} />
+      <FormInput register={register} name="surname" error={errors.surname} />
+      <FormInput register={register} name="username" error={errors.username} />
+      <FormInput
+        register={register}
+        name="email"
+        error={errors.email}
+        type="email"
+      />
+      <FormInput
+        register={register}
+        name="password"
+        error={errors.password}
+        type="password"
+      />
       <Form.Field name="error">
         <Form.Submit asChild>
           <Button className="w-full hover:cursor-pointer bg-cyan-500 hover:bg-cyan-600 transition">

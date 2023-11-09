@@ -2,7 +2,7 @@
 
 import { FormMessage } from "@radix-ui/react-form";
 import { Text } from "@radix-ui/themes";
-import React, { PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 
 const ErrorMessage = ({ children }: PropsWithChildren) => {
   if (!children) return null;
