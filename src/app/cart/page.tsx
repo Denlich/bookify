@@ -7,14 +7,16 @@ import Items from "./components/Items";
 
 const CartPage = async () => {
   const session = await getServerSession(authOptions);
-  const cart = await prisma.cart.findUnique({
-    where: { userId: session?.user.id },
-    include: { items: true },
-  });
+  const cart = session?.user.id
+    ? await prisma.cart.findUnique({
+        where: { userId: session?.user.id },
+        include: { items: true },
+      })
+    : null;
 
   return (
     <Flex direction="column" gap="5" p="3" className="bg-white rounded-xl">
-      <Header isEmpty={cart?.items.length === 0} />
+      <Header isEmpty={cart?.items.length === 0 || cart === null} />
       {session?.user.id ? (
         <Items userId={session?.user.id} />
       ) : (

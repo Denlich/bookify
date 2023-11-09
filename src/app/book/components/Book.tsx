@@ -15,10 +15,12 @@ interface BookProps {
 const Book = async ({ book, authorId }: BookProps) => {
   const author = await prisma.author.findUnique({ where: { id: authorId } });
   const session = await getServerSession(authOptions);
-  const cart = await prisma.cart.findUnique({
-    where: { userId: session?.user.id },
-    include: { items: true },
-  });
+  const cart = session?.user.id
+    ? await prisma.cart.findUnique({
+        where: { userId: session?.user.id },
+        include: { items: true },
+      })
+    : null;
 
   if (!cart && session)
     prisma.cart.create({ data: { userId: session?.user.id } });

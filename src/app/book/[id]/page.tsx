@@ -16,10 +16,12 @@ const BookPage = async ({ params }: { params: { id: string } }) => {
     where: { id: book?.publisherId },
   });
   const session = await getServerSession(authOptions);
-  const cart = await prisma.cart.findUnique({
-    where: { userId: session?.user.id },
-    include: { items: true },
-  });
+  const cart = session?.user.id
+    ? await prisma.cart.findUnique({
+        where: { userId: session?.user.id },
+        include: { items: true },
+      })
+    : null;
 
   const isInCart = cart?.items.some((item) => item.bookId === book?.id);
 
@@ -55,7 +57,7 @@ const BookPage = async ({ params }: { params: { id: string } }) => {
         <Text className="font-bold text-xl text-start">${book.cost}</Text>
         <AddToCartButton
           bookId={book.id}
-          cartId={cart!.id}
+          cartId={cart?.id}
           isInCart={isInCart!}
         />
       </Flex>
