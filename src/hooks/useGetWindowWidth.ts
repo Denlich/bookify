@@ -8,6 +8,8 @@ export const useGetWindowWidth = (): number => {
       setWindowWidth(window.innerWidth);
     };
 
+    handleResize();
+
     window.addEventListener("resize", handleResize);
 
     return () => {

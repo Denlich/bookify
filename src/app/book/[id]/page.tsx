@@ -1,12 +1,10 @@
-import React from "react";
-import prisma from "../../../../prisma/client";
-import { notFound } from "next/navigation";
-import { Flex, Grid, Text, Box, IconButton } from "@radix-ui/themes";
-import Link from "next/link";
-import Image from "next/image";
-import { AiOutlineShoppingCart } from "react-icons/ai";
 import authOptions from "@/auth/authOptions";
+import { Box, Flex, Grid, Text } from "@radix-ui/themes";
 import { getServerSession } from "next-auth";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import prisma from "../../../../prisma/client";
 import AddToCartButton from "../components/AddToCartButton";
 
 const BookPage = async ({ params }: { params: { id: string } }) => {
